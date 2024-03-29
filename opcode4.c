@@ -10,12 +10,12 @@ void pchar_opcode(stack_t **stack, unsigned int line_number)
 {
 	if (!(*stack))
 	{
-		dprintf(stderr, "L%d: can't pchar, stack empty\n", line_number);
+		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	if ((*stack)->n < 1 || (*stack)->n > 128)
 	{
-		dprintf(stderr, "L%d: can't pchar, value out of range\n"
+		fprintf(stderr, "L%d: can't pchar, value out of range\n"
 			, line_number);
 		exit(EXIT_FAILURE);
 	}

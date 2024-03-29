@@ -10,7 +10,7 @@ void add_opcode(stack_t **stack, unsigned int line_number)
 {
 	if (stack_len(*stack) < 2)
 	{
-		dprintf(stderr, "L%d: can't add, stack too short\n",
+		fprintf(stderr, "L%d: can't add, stack too short\n",
 			line_number);
 		exit(EXIT_FAILURE);
 	}
@@ -29,7 +29,7 @@ void sub_opcode(stack_t **stack, unsigned int line_number)
 
 	if (stack_len(*stack) < 2)
 	{
-		dprintf(stderr, "L%d: can't sub, stack too short\n",
+		fprintf(stderr, "L%d: can't sub, stack too short\n",
 			line_number);
 		exit(EXIT_FAILURE);
 	}
@@ -49,7 +49,7 @@ void div_opcode(stack_t **stack, unsigned int line_number)
 
 	if (stack_len(*stack) < 2)
 	{
-		dprintf(stderr, "L%d: can't div, stack too short\n",
+		fprintf(stderr, "L%d: can't div, stack too short\n",
 			line_number);
 		exit(EXIT_FAILURE);
 	}
@@ -69,7 +69,7 @@ void mul_opcode(stack_t **stack, unsigned int line_number)
 
 	if (stack_len(*stack) < 2)
 	{
-		dprintf(stderr, "L%d: can't mul, stack too short\n",
+		fprintf(stderr, "L%d: can't mul, stack too short\n",
 			line_number);
 		exit(EXIT_FAILURE);
 	}
@@ -89,13 +89,13 @@ void mod_opcode(stack_t **stack, unsigned int line_number)
 
 	if (stack_len(*stack) < 2)
 	{
-		dprintf(stderr, "L%d: can't mod, stack too short\n",
+		fprintf(stderr, "L%d: can't mod, stack too short\n",
 			line_number);
 		exit(EXIT_FAILURE);
 	}
 	if ((*stack)->n == 0)
 	{
-		dprintf(stderr, "L%d: division by zero\n",
+		fprintf(stderr, "L%d: division by zero\n",
 			line_number);
 		exit(EXIT_FAILURE);
 	}

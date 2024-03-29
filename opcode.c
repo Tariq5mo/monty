@@ -34,7 +34,7 @@ void push_opcode(stack_t **stack, unsigned int line_number)
 	args = save_args(NULL);
 	if (!args[1] || check_int(args[1]) != 0)
 	{
-		dprintf(stderr, "L%d: usage: push integer\n", line_number);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	add_dnodeint(stack, atoi(args[1]));
@@ -88,7 +88,7 @@ void pint_opcode(stack_t **stack, unsigned int line_number)
 {
 	if (!(*stack))
 	{
-		dprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", (*stack)->n);
