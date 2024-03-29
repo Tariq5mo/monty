@@ -54,7 +54,7 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 	ptr = malloc((nmemb) * size);
 	if (!ptr)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
+		dprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	s = ptr;
