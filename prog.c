@@ -61,7 +61,7 @@ char **save_args(char **args)
 void check_opcode(char *opcode, instruction_t *ins, char **lines)
 {
 	unsigned int i, j;
-	char **args;
+	char **args, *a;
 	stack_t *head;
 
 	head = NULL;
@@ -81,7 +81,8 @@ void check_opcode(char *opcode, instruction_t *ins, char **lines)
 			}
 		if (!(ins[j].opcode))
 		{
-			fprintf(stderr, "L%d: unknown instruction\n", i);
+			a = args[0];
+			fprintf(stderr, "L%d: unknown instruction %s\n", i, a);
 			exit(EXIT_FAILURE);
 		}
 	}
