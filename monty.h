@@ -69,4 +69,5 @@ void mod_opcode(stack_t **stack, unsigned int line_number);
 void pchar_opcode(stack_t **stack, unsigned int line_number);
 void pstr_opcode(stack_t **stack, unsigned int line_number);
 void rotl_opcode(stack_t **stack, unsigned int line_number);
+void rotr_opcode(stack_t **stack, unsigned int line_number);
 #endif/*endif*/

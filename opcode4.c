@@ -68,3 +68,24 @@ void rotl_opcode(stack_t **stack, unsigned int line_number)
 	temp->prev = last;
 	last->next = temp;
 }
+/**
+ * rotr_opcode - rotates the stack to the bottom.
+ *
+ * @stack:Pointer to first node of list
+ * @line_number: the number of line in file
+ */
+void rotr_opcode(stack_t **stack, unsigned int line_number)
+{
+        stack_t *last;
+
+        (void)(line_number);
+        if (!(*stack) || !((*stack)->next))
+                return;
+	for (last = (*stack); last->next;)
+                last = last->next;
+	last->prev->next = NULL;
+	last->prev = NULL;
+	(*stack)->prev = last;
+	last->next = (*stack);
+	(*stack) = last;
+}
