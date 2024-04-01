@@ -37,7 +37,10 @@ void push_opcode(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	add_dnodeint(stack, atoi(args[1]));
+	if (_stack(NULL) == 1)
+		add_dnodeint(stack, atoi(args[1]));
+	else if (_stack(NULL) == -1)
+		add_dnodeint_end(stack, atoi(args[1]));
 }
 /**
  * check_int - check if ptr is integer

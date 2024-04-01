@@ -40,6 +40,7 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+extern stack_t *front;
 char **from_str_to_args(char *ptr);
 void free_strings(char **grid);
 char *_strdup(char *str);
@@ -70,4 +71,8 @@ void pchar_opcode(stack_t **stack, unsigned int line_number);
 void pstr_opcode(stack_t **stack, unsigned int line_number);
 void rotl_opcode(stack_t **stack, unsigned int line_number);
 void rotr_opcode(stack_t **stack, unsigned int line_number);
+void stack_opcode(stack_t **stack, unsigned int line_number);
+void queue_opcode(stack_t **stack, unsigned int line_number);
+int _stack(char *str);
+stack_t *add_dnodeint_end(stack_t **head, const int n);
 #endif/*endif*/

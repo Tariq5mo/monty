@@ -84,7 +84,7 @@ instruction_t *make_instructions(void)
 {
 	instruction_t *ptr;
 
-	ptr = _calloc(16, sizeof(instruction_t));
+	ptr = _calloc(18, sizeof(instruction_t));
 	ptr[0].opcode = _strdup("push");
 	ptr[0].f = push_opcode;
 	ptr[1].opcode = _strdup("pall");
@@ -115,8 +115,12 @@ instruction_t *make_instructions(void)
 	ptr[13].f = rotl_opcode;
 	ptr[14].opcode = _strdup("rotr");
 	ptr[14].f = rotr_opcode;
-	ptr[15].opcode = NULL;
-	ptr[15].f = NULL;
+	ptr[15].opcode = _strdup("stack");
+	ptr[15].f = stack_opcode;
+	ptr[16].opcode = _strdup("queue");
+	ptr[16].f = queue_opcode;
+	ptr[17].opcode = NULL;
+	ptr[17].f = NULL;
 	return (ptr);
 }
 /**

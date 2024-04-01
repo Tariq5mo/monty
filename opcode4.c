@@ -76,13 +76,13 @@ void rotl_opcode(stack_t **stack, unsigned int line_number)
  */
 void rotr_opcode(stack_t **stack, unsigned int line_number)
 {
-        stack_t *last;
+	stack_t *last;
 
-        (void)(line_number);
-        if (!(*stack) || !((*stack)->next))
-                return;
+	(void)(line_number);
+	if (!(*stack) || !((*stack)->next))
+		return;
 	for (last = (*stack); last->next;)
-                last = last->next;
+		last = last->next;
 	last->prev->next = NULL;
 	last->prev = NULL;
 	(*stack)->prev = last;
