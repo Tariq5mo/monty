@@ -8,12 +8,13 @@
  */
 void pop_opcode(stack_t **stack, unsigned int line_number)
 {
+	/* Check if the stack is empty */
 	if (!(*stack))
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	delete_dnodeint_at_index(stack, 0);
+	delete_dnodeint_at_index(stack, 0); /* Delete the top element */
 }
 /**
  * delete_dnodeint_at_index - delete a node at a given position.
@@ -26,11 +27,14 @@ int delete_dnodeint_at_index(stack_t **head, unsigned int index)
 {
 	stack_t *pp, **p;
 
+	/* Check if the head is NULL */
 	if (!head && !(*head))
 		return (-1);
+	/* Iterate to the node at the given index */
 	for (p = head; index > 0 && *p && (*p)->next; p = &((*p)->next))
 		index--;
-	if (!(*p) && index > 0)/*check if valid*/
+	/* Check if the index is out of range */
+	if (!(*p) && index > 0) /*check if valid*/
 		return (-1);
 	if ((*p)->next)
 		(*p)->next->prev = (*p)->prev;
@@ -49,9 +53,10 @@ size_t stack_len(const stack_t *h)
 {
 	size_t i;
 
+	/* Iterate through the stack and count the elements */
 	for (i = 0; h; h = h->next)
 		i++;
-	return (i);
+	return (i); /* Return the number of elements */
 }
 /**
  * swap_opcode - swaps the top two elements of the stack.
@@ -61,10 +66,11 @@ size_t stack_len(const stack_t *h)
  */
 void swap_opcode(stack_t **stack, unsigned int line_number)
 {
+	/* Check if the stack has at least two elements */
 	if (stack_len(*stack) < 2)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n",
-			line_number);
+				line_number);
 		exit(EXIT_FAILURE);
 	}
 	(*stack)->next->prev = (*stack)->prev;

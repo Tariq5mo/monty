@@ -1,25 +1,28 @@
 #include "monty.h"
 
 /**
- * free_strings - free array of strings
+ * free_strings - Free the memory of a two dimensional array
+ * of strings
  *
- * @grid: The two dimensional array
-*/
+ * @grid: The array of strings
+ */
 void free_strings(char **grid)
 {
 	int i;
 
 	if (!grid)
 		return;
-	for (i = 0; grid[i]; i++)/*Free the rest of the the grid*/
-		free(grid[i]);/*Then the array of pointers*/
+	/* Iterate through the array and free each string */
+	for (i = 0; grid[i]; i++) /*Free the rest of the the grid*/
+		free(grid[i]);		  /*Then the array of pointers*/
 	free(grid);
 }
 /**
- * _strdup - put a string to new memory location
+ * _strdup - Make a copy of a string and return it
  *
- * @str: The_old_string
- * Return: new_string
+ *
+ * @str: The string to copy
+ * Return: The copy of the string
  */
 char *_strdup(char *str)
 {
@@ -32,17 +35,20 @@ char *_strdup(char *str)
 	s = _calloc(i + 1, 1);
 	if (s == NULL)
 		return (NULL);
+	/* Copy the string */
 	for (j = 0; j != i; j++)
 		s[j] = str[j];
 	return (s);
 }
 /**
- * _calloc -  allocates memory for an array
+ * _calloc -  Allocates memory for an array of nmemb elements of size bytes
+ * each and returns a pointer to the allocated memory
+ * The memory is set to zero
  *
- * @nmemb: The elements's number
+ * @nmemb: The number of elements
  * @size: The size of each element
  * Return: void
-*/
+ */
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
 	void *ptr;
@@ -58,15 +64,18 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 		exit(EXIT_FAILURE);
 	}
 	s = ptr;
+	/* Set the memory to zero */
 	for (j = 0; j < nmemb * size; j++)
 		s[j] = 0;
 	return (ptr);
 }
 /**
- * from_str_to_args - a string to array of strings
+ * from_str_to_args - Make an array of strings from a string
+ * that contains words separated by spaces
+ * The last element of the array is NULL
  *
- * @ptr: pointer to the string
- * Return: the array of strings
+ * @ptr: Pointer to the string
+ * Return: The array of strings
  */
 char **from_str_to_args(char *ptr)
 {
@@ -74,7 +83,8 @@ char **from_str_to_args(char *ptr)
 	int i, w;
 
 	str = _strdup(ptr);
-	for (i = w = 0; str[i];)/*how many words in ptr*/
+	/* Count the number of words in the string */
+	for (i = w = 0; str[i];) /*how many words in ptr*/
 	{
 		if (str[i] == ' ')
 			i++;
@@ -85,6 +95,7 @@ char **from_str_to_args(char *ptr)
 			w++;
 		}
 	}
+	/* If there are no words, free the string and return NULL */
 	if (w == 0)
 	{
 		free(str);
@@ -96,6 +107,7 @@ char **from_str_to_args(char *ptr)
 		return (NULL);
 	}
 	p = strtok(str, " \0");
+	/* Tokenize the string and store the words in the array */
 	for (i = 0; p; i++)
 	{
 		s[i] = _strdup(p);

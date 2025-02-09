@@ -11,10 +11,13 @@ int _strcmp(char *s1, char *s2)
 {
 	int i, j;
 
+	/* Iterate through the strings until a difference is found */
 	for (i = 0; s1[i] == s2[i] && s1[i] != '\0'; i++)
 		;
+	/* Calculate the difference between the characters */
+	/* at the point of divergence */
 	j = s1[i] - s2[i];
-	return (j);
+	return (j); /* Return the difference */
 }
 /**
  * set_null - set first '#' to '\0'
@@ -23,7 +26,9 @@ int _strcmp(char *s1, char *s2)
  */
 void set_null(char *s)
 {
+	/* Iterate through the string */
 	for (; *s; s++)
+		/* If a '#' character is found, replace it with a null terminator*/
 		if (*s == '#')
 		{
 			*s = '\0';
@@ -35,14 +40,15 @@ void set_null(char *s)
  *
  * @ptr: pointer to the string
  * Return: the array of lines
-*/
+ */
 char **strtolines(char *ptr)
 {
 	char **s, *p, *str;
 	int i, line;
 
-	str = _strdup(ptr);
-	for (i = line = 0;;)/*how many lines in ptr*/
+	str = _strdup(ptr); /* Duplicate the input string */
+	/* Calculate the number of lines in the string */
+	for (i = line = 0;;) /*how many lines in ptr*/
 	{
 		while (str[i] != '\n' && str[i])
 			i++;
@@ -57,23 +63,26 @@ char **strtolines(char *ptr)
 			break;
 		}
 	}
+	/* If there are no lines, free the duplicated string and return NULL */
 	if (line == 0)
 	{
 		free(str);
 		return (NULL);
 	}
+	/* Allocate memory for the array of lines */
 	s = _calloc(line + 1, sizeof(char *));
-	p = strtok(str, "\n");
+	p = strtok(str, "\n");				   /* Tokenize the string by newline characters */
+	/* Populate the array with the lines */
 	for (i = 0; p; i++)
 	{
-		s[i] = _strdup(p);
+		s[i] = _strdup(p); /* Duplicate each line */
 		p = strtok(NULL, "\n");
 	}
-	s[line] = NULL;
+	s[line] = NULL; /* Null-terminate the array */
 	for (i = 0; s[i]; i++)
 		;
-	free(str);
-	return (s);
+	free(str);	/* Free the duplicated string */
+	return (s); /* Return the array of lines */
 }
 /**
  * make_instructions - make array of structures for instruction
@@ -121,7 +130,7 @@ instruction_t *make_instructions(void)
 	ptr[16].f = queue_opcode;
 	ptr[17].opcode = NULL;
 	ptr[17].f = NULL;
-	return (ptr);
+	return (ptr); /* Return the array of instruction structures */
 }
 /**
  * free_instruction - free array of structures
@@ -132,9 +141,19 @@ void free_instruction(instruction_t *ptr)
 {
 	int i;
 
+	/* Iterate through the array and free the opcode strings */
 	for (i = 0; ptr[i].opcode; i++)
 	{
 		free(ptr[i].opcode);
 	}
-	free(ptr);
+	free(ptr); /* Free the array itself */
+	void free_instruction(instruction_t *ptr);
+	{
+		/* Iterate through the array and free the opcode strings */
+		for (i = 0; ptr[i].opcode; i++)
+		{
+			free(ptr[i].opcode);
+		}
+		free(ptr); /* Free the array itself */
+	}
 }
